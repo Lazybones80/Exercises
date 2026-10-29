@@ -8081,8 +8081,8 @@ window.AP_DATA = {
     },
     {
       "id": 32,
-      "title": "Exercise 32 (Figura A)",
-      "sourceLabel": "Exercise 32 (Figura A)",
+      "title": "Exercise 32 (Figure A)",
+      "sourceLabel": "Exercise 32 (Figure A)",
       "measureStart": 63,
       "measureEnd": 63,
       "bars": "63–63",
@@ -8177,7 +8177,7 @@ window.AP_DATA = {
       "measurePatterns": [
         {
           "measure": 63,
-          "text": "Exercise 32 (Figura A)",
+          "text": "Exercise 32 (Figure A)",
           "notes": [
             {
               "string": 4,
@@ -8250,8 +8250,8 @@ window.AP_DATA = {
     },
     {
       "id": 33,
-      "title": "Exercise 33 (Figura B)",
-      "sourceLabel": "Exercise 33 (Figura B)",
+      "title": "Exercise 33 (Figure B)",
+      "sourceLabel": "Exercise 33 (Figure B)",
       "measureStart": 64,
       "measureEnd": 64,
       "bars": "64–64",
@@ -8345,7 +8345,7 @@ window.AP_DATA = {
       "measurePatterns": [
         {
           "measure": 64,
-          "text": "Exercise 33 (Figura B)",
+          "text": "Exercise 33 (Figure B)",
           "notes": [
             {
               "string": 3,
@@ -8418,8 +8418,8 @@ window.AP_DATA = {
     },
     {
       "id": 34,
-      "title": "Exercise 34 (Figura C)",
-      "sourceLabel": "Exercise 34 (Figura C)",
+      "title": "Exercise 34 (Figure C)",
+      "sourceLabel": "Exercise 34 (Figure C)",
       "measureStart": 65,
       "measureEnd": 65,
       "bars": "65–65",
@@ -8514,7 +8514,7 @@ window.AP_DATA = {
       "measurePatterns": [
         {
           "measure": 65,
-          "text": "Exercise 34 (Figura C)",
+          "text": "Exercise 34 (Figure C)",
           "notes": [
             {
               "string": 3,
