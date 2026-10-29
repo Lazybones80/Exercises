@@ -1,0 +1,192 @@
+<!doctype html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <meta name="description" content="All 59 alternate-picking source exercises in one compact view.">
+  <title>All Exercises · Alternate Picking</title>
+  <style>
+    :root {
+      --bg: #06151f;
+      --panel: #102537;
+      --panel-deep: #071921;
+      --line: rgba(153, 205, 220, .24);
+      --ink: #eff8ff;
+      --muted: #a9c1d2;
+      --faint: #7895aa;
+      --teal: #5be0c7;
+      --amber: #f3bd63;
+      --shadow: 0 20px 55px rgba(0, 0, 0, .24);
+    }
+    * { box-sizing: border-box; }
+    html { background: var(--bg); }
+    body {
+      min-width: 320px;
+      margin: 0;
+      color: var(--ink);
+      background:
+        radial-gradient(circle at 15% -10%, rgba(91,224,199,.12), transparent 30rem),
+        linear-gradient(180deg, #0a1d2b 0, var(--bg) 38rem);
+      font: 14px/1.45 Inter, ui-sans-serif, system-ui, -apple-system, BlinkMacSystemFont, "Segoe UI", sans-serif;
+    }
+    button, input { font: inherit; }
+    a { color: inherit; }
+    .shell { width: min(100% - 28px, 1800px); margin: 0 auto; }
+    .topbar { position: sticky; top: 0; z-index: 5; border-bottom: 1px solid rgba(153,205,220,.18); background: rgba(6,21,31,.88); backdrop-filter: blur(16px); }
+    .topbar-inner { display: flex; align-items: center; justify-content: space-between; gap: 16px; min-height: 70px; }
+    .brand { display: inline-flex; align-items: center; gap: 10px; color: var(--ink); text-decoration: none; font-size: 16px; font-weight: 850; letter-spacing: .02em; }
+    .brand small { display: block; margin-top: 2px; color: var(--faint); font-size: 10px; font-weight: 650; letter-spacing: .08em; text-transform: uppercase; }
+    .brand-mark { width: 24px; height: 24px; border: 2px solid var(--teal); border-radius: 8px; transform: rotate(45deg); box-shadow: 0 0 0 5px rgba(91,224,199,.1); }
+    .top-actions { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 8px; }
+    .btn, .pill { display: inline-flex; align-items: center; justify-content: center; border: 1px solid var(--line); border-radius: 999px; background: rgba(255,255,255,.045); color: var(--muted); text-decoration: none; }
+    .btn { padding: 8px 13px; cursor: pointer; }
+    .btn:hover { border-color: rgba(91,224,199,.7); color: var(--ink); }
+    .btn.primary { border-color: transparent; color: #061b20; background: var(--teal); font-weight: 850; }
+    .main { padding: 36px 0 70px; }
+    .intro { display: flex; align-items: end; justify-content: space-between; gap: 24px; margin-bottom: 22px; }
+    .eyebrow { margin: 0 0 8px; color: var(--teal); font-size: 11px; font-weight: 850; letter-spacing: .12em; text-transform: uppercase; }
+    h1 { margin: 0; max-width: 850px; font-size: clamp(32px, 4vw, 57px); line-height: .98; letter-spacing: -.06em; }
+    .lede { max-width: 760px; margin: 12px 0 0; color: var(--muted); font-size: 16px; }
+    .source-badges { display: flex; flex-wrap: wrap; justify-content: flex-end; gap: 7px; min-width: 230px; }
+    .pill { padding: 7px 10px; color: var(--teal); font-size: 11px; font-weight: 800; }
+    .toolbar { position: sticky; top: 70px; z-index: 4; display: grid; gap: 10px; margin-bottom: 17px; padding: 11px; border: 1px solid var(--line); border-radius: 15px; background: rgba(16,37,55,.9); box-shadow: var(--shadow); backdrop-filter: blur(16px); }
+    .toolbar-row { display: flex; align-items: center; gap: 10px; }
+    .search { min-width: 0; flex: 1 1 260px; padding: 10px 12px; border: 1px solid var(--line); border-radius: 10px; outline: none; color: var(--ink); background: rgba(255,255,255,.055); }
+    .search:focus { border-color: rgba(91,224,199,.75); box-shadow: 0 0 0 3px rgba(91,224,199,.1); }
+    .count { flex: 0 0 auto; color: var(--muted); font-size: 12px; }
+    .filters { display: flex; flex-wrap: wrap; gap: 7px; }
+    .filter { padding: 6px 9px; border: 1px solid var(--line); border-radius: 999px; color: var(--muted); background: transparent; cursor: pointer; font-size: 11px; font-weight: 760; }
+    .filter:hover { color: var(--ink); border-color: rgba(91,224,199,.6); }
+    .filter.active { border-color: transparent; color: #061b20; background: var(--teal); }
+    .exercise-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(350px, 1fr)); gap: 14px; align-items: start; }
+    .exercise-card { min-width: 0; overflow: hidden; border: 1px solid var(--line); border-radius: 16px; background: linear-gradient(145deg, rgba(16,37,55,.97), rgba(7,25,33,.97)); box-shadow: 0 10px 30px rgba(0,0,0,.13); }
+    .exercise-head { display: flex; align-items: start; justify-content: space-between; gap: 10px; padding: 13px 14px 11px; border-bottom: 1px solid rgba(153,205,220,.15); }
+    .exercise-heading { min-width: 0; }
+    .exercise-kicker { margin-bottom: 3px; color: var(--teal); font: 850 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .1em; text-transform: uppercase; }
+    .exercise-title { margin: 0; font-size: 18px; line-height: 1.05; letter-spacing: -.03em; }
+    .exercise-sub { margin: 4px 0 0; color: var(--muted); font-size: 11px; }
+    .exercise-number { display: grid; flex: 0 0 34px; place-items: center; width: 34px; height: 34px; border-radius: 10px; color: #061b20; background: var(--amber); font: 900 12px ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .measure-grid { display: grid; grid-template-columns: repeat(auto-fit, minmax(290px, 1fr)); gap: 8px; padding: 9px; }
+    .measure { min-width: 0; padding: 8px 8px 9px; border: 1px solid rgba(91,224,199,.22); border-radius: 11px; background: var(--panel-deep); }
+    .measure-label { display: flex; align-items: center; justify-content: space-between; gap: 8px; margin-bottom: 6px; color: #d9f5f2; font: 850 10px/1.2 ui-monospace, SFMono-Regular, Menlo, monospace; letter-spacing: .06em; text-transform: uppercase; }
+    .measure-label em { overflow: hidden; color: var(--amber); font-size: 9px; font-style: normal; letter-spacing: 0; text-overflow: ellipsis; white-space: nowrap; text-transform: none; }
+    .tab-row { display: grid; grid-template-columns: 13px 9px minmax(0, 1fr); align-items: center; min-height: 17px; color: #d6fff6; font: 700 11px/1.18 ui-monospace, SFMono-Regular, Menlo, monospace; }
+    .string-number { color: #d9f5f2; }
+    .divider { color: var(--faint); }
+    .cells { display: grid; grid-template-columns: repeat(var(--events), minmax(0, 1fr)); min-width: 0; }
+    .cell { min-width: 0; text-align: center; color: #a7c9d2; }
+    .cell.note { color: #effffb; }
+    .cell.note::after { content: ''; display: block; width: 3px; height: 3px; margin: 1px auto -1px; border-radius: 50%; background: var(--teal); opacity: .78; }
+    .empty { padding: 34px 12px; border: 1px dashed var(--line); border-radius: 14px; color: var(--muted); text-align: center; }
+    .footer { margin-top: 25px; color: var(--faint); font-size: 12px; }
+    .footer a { color: var(--teal); }
+    @media (max-width: 720px) {
+      .shell { width: min(100% - 18px, 600px); }
+      .topbar-inner { min-height: 60px; }
+      .brand small { display: none; }
+      .main { padding-top: 24px; }
+      .intro { display: block; }
+      .source-badges { justify-content: flex-start; margin-top: 15px; }
+      .toolbar { top: 60px; }
+      .toolbar-row { display: block; }
+      .count { display: block; margin-top: 7px; }
+      .exercise-grid { grid-template-columns: 1fr; }
+      .measure-grid { grid-template-columns: 1fr; }
+    }
+    @media (min-width: 1500px) { .exercise-grid { grid-template-columns: repeat(4, minmax(0, 1fr)); } }
+  </style>
+</head>
+<body>
+  <header class="topbar">
+    <div class="shell topbar-inner">
+      <a class="brand" href="index.html" aria-label="All Exercises home"><span class="brand-mark" aria-hidden="true"></span><span>All Exercises<small>alternate picking source sheets</small></span></a>
+
+    </div>
+  </header>
+
+  <main class="shell main">
+    <section class="intro">
+      <div>
+        <p class="eyebrow">59 source exercises · one view</p>
+        <h1>Every exercise, ready to scan.</h1>
+        <p class="lede">The exact source measures from the GP3 set, arranged as compact cards so you can compare patterns without changing the selected exercise.</p>
+      </div>
+      <div class="source-badges" aria-label="Source display settings"><span class="pill">Key: Original</span><span class="pill">Fret numbers</span><span class="pill">String 1 = high E</span></div>
+    </section>
+
+    <section class="toolbar" aria-label="Exercise filters">
+      <div class="toolbar-row"><input class="search" id="search" type="search" placeholder="Search exercise, section, figure, or fret…" aria-label="Search exercises"><span class="count" id="count">Showing 59 of 59 exercises</span></div>
+      <div class="filters" id="filters"></div>
+    </section>
+
+    <section id="exerciseGrid" class="exercise-grid" aria-live="polite"></section>
+    <p class="footer">Source: <strong>Lessons - Guitar - Alternate Picking Exercises.gp3</strong> · 90 BPM · 4/4</p>
+  </main>
+
+  <script src="data.js"></script>
+  <script>
+    (() => {
+      const data = window.AP_DATA;
+      const exercises = data?.exercises || [];
+      const sections = data?.sections || [];
+      const state = { query: '', section: 'all' };
+      const $ = (selector) => document.querySelector(selector);
+
+      function esc(value) {
+        return String(value ?? '').replace(/[&<>"']/g, (char) => ({ '&': '&amp;', '<': '&lt;', '>': '&gt;', '"': '&quot;', "'": '&#39;' }[char]));
+      }
+
+      function measureMarkup(measure) {
+        const notes = measure.notes || [];
+        const events = notes.length || 1;
+        const rows = Array.from({ length: 6 }, (_, index) => {
+          const stringNumber = index + 1;
+          const cells = notes.map((note) => {
+            const active = note.string === stringNumber;
+            return `<span class="cell${active ? ' note' : ''}">${active ? esc(note.fret) : '·'}</span>`;
+          }).join('');
+          return `<div class="tab-row"><span class="string-number">${stringNumber}</span><span class="divider">|</span><span class="cells" style="--events:${events}">${cells}</span></div>`;
+        }).join('');
+        return `<section class="measure"><div class="measure-label"><span>Measure ${esc(measure.measure)} · 4/4</span>${measure.text ? `<em>${esc(measure.text)}</em>` : ''}</div>${rows}</section>`;
+      }
+
+      function cardMarkup(exercise) {
+        const measures = (exercise.measurePatterns || []).map(measureMarkup).join('');
+        return `<article class="exercise-card"><header class="exercise-head"><div class="exercise-heading"><div class="exercise-kicker">${esc(exercise.sectionLabel?.split(' · ')[0] || 'Exercise')}</div><h2 class="exercise-title">${esc(exercise.title)}</h2><p class="exercise-sub">m. ${esc(exercise.bars)} · ${esc(exercise.patternLabel)} · ${esc(exercise.totalNotes)} notes</p></div><span class="exercise-number" aria-label="Exercise ${exercise.id}">${String(exercise.id).padStart(2, '0')}</span></header><div class="measure-grid">${measures}</div></article>`;
+      }
+
+      function renderFilters() {
+        const labels = [['all', 'All exercises'], ...sections.map((section) => [section.key, section.label.split(' · ')[0]])];
+        $('#filters').innerHTML = labels.map(([key, label]) => `<button class="filter${state.section === key ? ' active' : ''}" type="button" data-section="${esc(key)}">${esc(label)}</button>`).join('');
+        document.querySelectorAll('.filter').forEach((button) => button.addEventListener('click', () => {
+          state.section = button.dataset.section;
+          renderFilters();
+          render();
+        }));
+      }
+
+      function filtered() {
+        const query = state.query.trim().toLowerCase();
+        return exercises.filter((exercise) => {
+          const searchable = [exercise.id, exercise.title, exercise.bars, exercise.sectionLabel, exercise.patternLabel, exercise.fretMin, exercise.fretMax].join(' ').toLowerCase();
+          return (state.section === 'all' || exercise.section === state.section) && (!query || searchable.includes(query));
+        });
+      }
+
+      function render() {
+        const list = filtered();
+        $('#count').textContent = `Showing ${list.length} of ${exercises.length} exercises`;
+        $('#exerciseGrid').innerHTML = list.length ? list.map(cardMarkup).join('') : '<div class="empty">No exercises match that search.</div>';
+      }
+
+      if (!exercises.length) {
+        $('#exerciseGrid').innerHTML = '<div class="empty">Exercise data could not be loaded. Open this page from the project folder so data.js can load beside it.</div>';
+      } else {
+        $('#search').addEventListener('input', (event) => { state.query = event.target.value; render(); });
+        renderFilters();
+        render();
+      }
+    })();
+  </script>
+</body>
+</html>
